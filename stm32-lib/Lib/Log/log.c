@@ -9,6 +9,9 @@
 #include <string.h>
 #include <stdio.h>
 
+// TODO: dodac kolejki i jakis nieblokujacy sposob wysylania
+// ale to pewnie w jakiejs oddzielnej bibliotece bedzie (?)
+
 /* PRIVATE */
 
 char buffer[LOG_BUFFER_SIZE];
