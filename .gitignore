@@ -1,3 +1,6 @@
+stm32-lib/.settings
+stm32-lib/Debug
+
 # Prerequisites
 *.d
 
