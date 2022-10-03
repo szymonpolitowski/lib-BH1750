@@ -53,7 +53,9 @@ static void MX_GPIO_Init(void);
 static void MX_I2C1_Init(void);
 static void MX_TIM7_Init(void);
 /* USER CODE BEGIN PFP */
+
 void StartBlinkingLedTask(void);
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -84,7 +86,9 @@ int main(void)
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
+
   HAL_Delay(100);
+
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
@@ -93,7 +97,9 @@ int main(void)
   MX_TIM7_Init();
   /* USER CODE BEGIN 2 */
 
+
   StartBlinkingLedTask();
+
 
   /* USER CODE END 2 */
 
