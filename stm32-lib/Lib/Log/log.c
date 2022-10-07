@@ -35,31 +35,16 @@ void _PrintLog(uint32_t systime, const char* lvl, const char* tag, char* str) {
 	char time_lvl_tag[32];
 	int len = sprintf(time_lvl_tag, "%ld:\t%s [%s] ", systime, lvl, tag);
 
+	/*TODO: sam wysyl po uarcie trzeba przeniesc do oddzielnej biblioteki
+		(niekoniecznie te wiadomosci musza byc wysylane przez Uart!)
+	*/
 	HAL_UART_Transmit(&huart1, (const uint8_t *)time_lvl_tag, (uint16_t)len, 10);
 	HAL_UART_Transmit(&huart1, (const uint8_t *)str, strlen(str), 10);
 	HAL_UART_Transmit(&huart1, (const uint8_t *)end_of_log, strlen(end_of_log), 10);
 }
 
 
-void _Log(const char* lvl, const char* tag, char* string, ...) {
-
-	uint32_t systime = _GetSystime();
-
-	va_list args;
-	va_start(args, string);
-	vsprintf(buffer, (const char *)string, args);
-
-	_PrintLog(systime, lvl, tag, buffer);
-
-	va_end(args);
-}
-
 /* PUBLIC */
-
-// TODO: dokonczyc biblioteke
-
-// FIXME: naprawic wyswietlanie argumentow
-
 
 void Log_Error(const char* tag, char* string, ...) {
 
@@ -77,7 +62,12 @@ void Log_Error(const char* tag, char* string, ...) {
 void Log_Warning(const char* tag, char* string, ...) {
 
 #if (LOG_LEVEL >= LOG_LEVEL_WARNING)
-	_Log(lvl_warning, tag, string);
+	uint32_t systime = _GetSystime();
+	va_list args;
+	va_start(args, string);
+	vsprintf(buffer, (const char *)string, args);
+	_PrintLog(systime, lvl_warning, tag, buffer);
+	va_end(args);
 #endif
 
 }
@@ -85,7 +75,12 @@ void Log_Warning(const char* tag, char* string, ...) {
 void Log_Info(const char* tag, char* string, ...) {
 
 #if (LOG_LEVEL >= LOG_LEVEL_INFO)
-	_Log(lvl_info, tag, string);
+	uint32_t systime = _GetSystime();
+	va_list args;
+	va_start(args, string);
+	vsprintf(buffer, (const char *)string, args);
+	_PrintLog(systime, lvl_info, tag, buffer);
+	va_end(args);
 #endif
 
 }
@@ -93,7 +88,12 @@ void Log_Info(const char* tag, char* string, ...) {
 void Log_Debug(const char* tag, char* string, ...) {
 
 #if (LOG_LEVEL >= LOG_LEVEL_DEBUG)
-	_Log(lvl_debug, tag, string);
+	uint32_t systime = _GetSystime();
+	va_list args;
+	va_start(args, string);
+	vsprintf(buffer, (const char *)string, args);
+	_PrintLog(systime, lvl_debug, tag, buffer);
+	va_end(args);
 #endif
 
 }
@@ -101,7 +101,12 @@ void Log_Debug(const char* tag, char* string, ...) {
 void Log_Verbose(const char* tag, char* string, ...) {
 
 #if (LOG_LEVEL >= LOG_LEVEL_VERBOSE)
-	_Log(lvl_verbose, tag, string);
+	uint32_t systime = _GetSystime();
+	va_list args;
+	va_start(args, string);
+	vsprintf(buffer, (const char *)string, args);
+	_PrintLog(systime, lvl_verbose, tag, buffer);
+	va_end(args);
 #endif
 
 }
