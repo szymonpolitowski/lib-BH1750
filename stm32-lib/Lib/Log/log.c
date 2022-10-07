@@ -64,8 +64,9 @@ void _Log(const char* lvl, const char* tag, char* string, ...) {
 void Log_Error(const char* tag, char* string, ...) {
 
 #if (LOG_LEVEL >= LOG_LEVEL_ERROR)
-	va_list args;
 	uint32_t systime = _GetSystime();
+	va_list args;
+	va_start(args, string);
 	vsprintf(buffer, (const char *)string, args);
 	_PrintLog(systime, lvl_error, tag, buffer);
 	va_end(args);

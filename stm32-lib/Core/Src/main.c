@@ -305,7 +305,7 @@ static void MX_GPIO_Init(void)
 void StartBlinkingLedTask(void) {
 
 //	Log("main", "Starting Blinking Led Task.\r\n");
-	Log_Error("MAIN", "Tu wyswietlam niby jakis blad nr %d", 12);
+	Log_Error("MAIN", "Tu wyswietlam niby jakis blad nr %d - %s", 12, "naprawione! :D");
 	HAL_TIM_Base_Start_IT(&htim7);
 }
 
