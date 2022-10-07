@@ -14,6 +14,11 @@
 #include "bh1750-instruction-set.h"
 #include <stdint.h>
 
+#define BH1750_I2C_ADDRESS_PIN_STATE_LOW	0x23
+#define BH1750_I2C_ADDRESS_PIN_STATE_HIGH	0x5C
+
+#define BH1750_I2C_ADDRESS_PIN_STATE_DEFAULT	BH1750_I2C_ADDRESS_PIN_STATE_LOW
+
 
 typedef struct {
 
@@ -22,7 +27,7 @@ typedef struct {
 
 }BH1750_t;
 
-void BH1750_InitDevice(BH1750_t*);
+void BH1750_InitDevice(BH1750_t*, uint8_t);
 
 void BH1750_SetModeSleep(BH1750_t*);
 
