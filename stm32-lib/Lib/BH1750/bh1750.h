@@ -31,5 +31,6 @@ void BH1750_SetModeNormal(BH1750_t*);
 void BH1750_ResetDataRegisterValue(BH1750_t*);
 
 
+void BH1750_Test(void);
 
 #endif /* BH1750_BH1750_H_ */
